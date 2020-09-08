@@ -18,6 +18,7 @@ defmodule HelloWeb.Router do
 
     get "/", PageController, :index
     get "/login", LoginController, :index
+    post "/login", CheckloginController, :index
     get "/overview", OverviewController, :index
     get "/detail", DetailController, :index
   end

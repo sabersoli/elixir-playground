@@ -1,0 +1,46 @@
+version: '3'
+services:
+  hello_phoenix:
+  
+    image: bitwalker/alpine-elixir-phoenix:latest
+
+    volumes:
+      - "./:/app"
+      - "elixir-mix:/root/.mix"
+
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    networks:
+      - elixir-net
+    ports:
+      - "4000:4000"
+    command: iex -S mix phx.server
+    environment:
+      PGDATABASE: 
+      PGUSER: 
+      PGPASSWORD: 
+      PGHOST: 
+    depends_on:
+      - postgres_docker
+
+  postgres_docker:
+    networks:
+      - elixir-net
+    ports:
+      - 5432:5432
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: postgres
+    volumes:
+      - "postgres:/var/lib/postgresql/data/"
+networks:
+  elixir-net:
+    external: true
+volumes:
+  postgres:
+    external: true
+  elixir-mix:
+    external: true

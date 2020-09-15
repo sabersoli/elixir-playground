@@ -1,7 +1,8 @@
 <div class="phx-hero">
   <h2>Das ist die Login Seite. Immer noch der Tuuuur</h2>
-  <form>
-    <input type="text" placeholder="Benutzername">
-    <input type="text" placeholder="Passwort">
+  <form action="/login" method="POST">
+    <input name="username" type="text" placeholder="Benutzername">
+    <input name="password" type="text" placeholder="Passwort">
+    <input type="submit" value="Anmelden">
   </form>
 </div>
